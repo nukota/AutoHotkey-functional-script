@@ -1,6 +1,6 @@
 # AHK Utilities
 
-A comprehensive AutoHotkey v2 script combining multiple productivity tools into one powerful utility suite.
+AutoHotkey v2 script combining multiple productivity tools into one powerful utility suite.
 
 ---
 
@@ -8,6 +8,7 @@ A comprehensive AutoHotkey v2 script combining multiple productivity tools into 
 
 | File                     | Description                                                             |
 | ------------------------ | ----------------------------------------------------------------------- |
+| `config.ahk`             | **Browser configuration** - Set your preferred browser                  |
 | `all.ahk`                | **Main script** - Contains all functions in a single file (recommended) |
 | `launcher.ahk`           | Runs all separate scripts and terminates                                |
 | `url_utilities.ahk`      | URL validation and shortening functions                                 |
@@ -19,34 +20,44 @@ A comprehensive AutoHotkey v2 script combining multiple productivity tools into 
 
 ---
 
+## 📋 Quick Start Guide
+
+1. **Install AutoHotkey v2.0**: Download from [autohotkey.com](https://www.autohotkey.com/) and run the installer
+2. **Configure browser** (optional): Edit `config.ahk` to set your preferred browser (default: Microsoft Edge)
+3. **Get the script**: Download `all.ahk` (or all files) to your computer
+4. **Run the script**: Double-click `all.ahk` to start (or run individual `.ahk` files for specific functions only)
+5. **Customize**: Press `CapsLock + ;` to edit hotstrings or modify the script directly
+
+---
+
 ## ⌨️ Hotkey Reference
 
 ### CapsLock Combinations
 
-| Hotkey             | Function           | Description                                                                        |
-| ------------------ | ------------------ | ---------------------------------------------------------------------------------- |
-| `CapsLock + C`     | URL Shortener      | Select a URL, press hotkey → URL is shortened via is.gd API and replaces selection |
-| `CapsLock + V`     | Clipboard History  | Opens a menu showing last 25 copied items. Click any item to paste it instantly    |
-| `CapsLock + J`     | Joke Generator     | Opens a GUI to configure and fetch random jokes from JokeAPI                       |
-| `CapsLock + ;`     | Hotstring Editor   | Opens GUI to add/edit/delete custom text expansions                                |
-| `CapsLock + M`     | Google Meet        | Creates a new Google Meet, waits for load, and copies the meeting URL              |
-| `CapsLock` (alone) | Toggle + Uppercase | Toggles CapsLock state AND converts selected text to UPPERCASE                     |
-| `Ctrl + CapsLock`  | Lowercase          | Converts selected text to lowercase (does not toggle CapsLock)                     |
+| Hotkey             | Function           | Description                                                                                       |
+| ------------------ | ------------------ | ------------------------------------------------------------------------------------------------- |
+| `CapsLock + C`     | URL Shortener      | Select a URL, press hotkey → URL is shortened via is.gd API and replaces selection (also copy it) |
+| `CapsLock + V`     | Clipboard History  | Opens a menu showing last 25 copied items. Click any item to paste it instantly                   |
+| `CapsLock + J`     | Joke Generator     | Opens a GUI to configure and fetch random jokes from JokeAPI                                      |
+| `CapsLock + ;`     | Hotstring Editor   | Opens GUI to add/edit/delete custom text expansions                                               |
+| `CapsLock + M`     | Google Meet        | Creates a new Google Meet, waits for load, and copies the meeting URL                             |
+| `CapsLock` (alone) | Toggle + Uppercase | Toggles CapsLock state AND converts selected text to UPPERCASE                                    |
+| `Ctrl + CapsLock`  | Lowercase          | Converts selected text to lowercase (does not toggle CapsLock)                                    |
 
 ### Alt + Key Shortcuts
 
-| Hotkey    | Target         | URL/Action                                        |
-| --------- | -------------- | ------------------------------------------------- |
-| `Alt + Q` | Gmail          | `https://mail.google.com/`                        |
-| `Alt + C` | ChatGPT        | `https://chat.openai.com/`                        |
-| `Alt + W` | Facebook       | `https://www.facebook.com/`                       |
-| `Alt + S` | Spotify Web    | `https://open.spotify.com/`                       |
-| `Alt + G` | Gemini         | `https://gemini.google.com/`                      |
-| `Alt + R` | Reddit         | `https://reddit.com/`                             |
-| `Alt + V` | VS Code        | Activates existing window or launches VS Code     |
-| `Alt + A` | Quick Navigate | Shows input box → searches/navigates in Edge      |
-| `Alt + 1` | Google Search  | Searches Google for selected text                 |
-| `Alt + 2` | Explain Search | Searches Google for "giai thich " + selected text |
+| Hotkey    | Target         | URL/Action                                                                                            |
+| --------- | -------------- | ----------------------------------------------------------------------------------------------------- |
+| `Alt + Q` | Gmail          | `https://mail.google.com/`                                                                            |
+| `Alt + C` | ChatGPT        | `https://chat.openai.com/`                                                                            |
+| `Alt + W` | Facebook       | `https://www.facebook.com/`                                                                           |
+| `Alt + S` | Spotify Web    | `https://open.spotify.com/`                                                                           |
+| `Alt + G` | Gemini         | `https://gemini.google.com/`                                                                          |
+| `Alt + R` | Reddit         | `https://reddit.com/`                                                                                 |
+| `Alt + V` | VS Code        | Activates existing window or launches VS Code                                                         |
+| `Alt + A` | Quick Navigate | Shows input box → searches/navigates in Edge (uses browser autocomplete for frequently visited sites) |
+| `Alt + 1` | Google Search  | Searches Google for selected text                                                                     |
+| `Alt + 2` | Explain Search | Searches Google for "explain " + selected text                                                        |
 
 ---
 
@@ -109,51 +120,14 @@ Create custom text expansions with optional rich text formatting.
 
 ### 🎭 Joke Generator (JokeAPI v2)
 
-Fetches random jokes from [JokeAPI](https://v2.jokeapi.dev/).
+Fetches random jokes from [JokeAPI](https://v2.jokeapi.dev/) with customizable filters:
 
-**Categories** (select one or more, or "Any"):
-
-- Programming
-- Misc
-- Dark
-- Pun
-- Spooky
-- Christmas
-
-**Blacklist Flags** (exclude jokes containing):
-
-- NSFW
-- Religious
-- Political
-- Racist
-- Sexist
-- Explicit
-
-**Safe Mode**: One-click option that enables all blacklist flags
-
-**Languages Supported**:
-| Code | Language |
-|------|----------|
-| en | English |
-| cs | Czech |
-| de | German |
-| es | Spanish |
-| fr | French |
-| pt | Portuguese |
-
-**Joke Types**:
-
-- **Any**: Both single and two-part jokes
-- **single**: One-liner jokes
-- **twopart**: Setup + delivery format
-
-**Search**: Optional text filter - only returns jokes containing the specified string
-
-**Result Actions**:
-
-- 📋 **Copy to Clipboard**: Copies the joke text
-- 🎲 **Try Another**: Fetches a new joke with same settings
-- ❌ **Close**: Closes the result window
+- **Categories**: Programming, Misc, Dark, Pun, Spooky, Christmas, or Any
+- **Filters**: Blacklist NSFW/religious/political content, Safe Mode option
+- **Languages**: English, Czech, German, Spanish, French, Portuguese
+- **Types**: Single jokes, two-part jokes, or both
+- **Search**: Optional keyword filtering
+- **Actions**: Copy to clipboard, try another, or close
 
 ### 🔗 URL Shortener
 
@@ -191,24 +165,8 @@ Shortens URLs using the [is.gd](https://is.gd/) API.
 
 - **AutoHotkey v2.0** or later ([Download](https://www.autohotkey.com/))
 - **Windows 10/11**
-- **Microsoft Edge** (for browser shortcuts - can be modified for Chrome/Firefox)
+- **Web browser** (Microsoft Edge by default, configurable in `config.ahk`)
 - **Internet connection** (for URL shortening and JokeAPI)
-
----
-
-## 🚀 Installation & Usage
-
-1. Install AutoHotkey v2.0+
-2. Download/clone this repository
-3. Double-click `all.ahk` to run
-
-**Startup Notifications**: When launched, you'll see tooltips confirming each feature is active.
-
-**System Tray**: Right-click the AHK icon in system tray to:
-
-- Pause/suspend the script
-- Edit the script
-- Exit
 
 ---
 
@@ -222,19 +180,29 @@ Shortens URLs using the [is.gd](https://is.gd/) API.
 
 ### Modify Clipboard History Size
 
-Edit `all.ahk` and change:
+Edit `config.ahk` and change:
 
 ```ahk
-global MaxHistoryItems := 25        ; Change to desired number
+global MaxHistoryItems := 25        ; Maximum items to store
 global MaxDisplayLength := 60       ; Characters shown per item
 ```
+
+### Change Browser
+
+Edit `config.ahk` and modify:
+
+```ahk
+global PreferredBrowser := "chrome.exe"  ; Change to your preferred browser
+```
+
+Supported browsers: `msedge.exe`, `chrome.exe`, `firefox.exe`, `brave.exe`, etc.
 
 ### Add New Website Shortcuts
 
 Add new hotkeys in the Browser Shortcuts section:
 
 ```ahk
-!x:: OpenEdgeInstant("https://example.com/")  ; Alt+X opens example.com
+!x:: OpenInBrowser("https://example.com/")  ; Alt+X opens example.com
 ```
 
 ---

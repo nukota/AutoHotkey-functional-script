@@ -1,6 +1,9 @@
 #Requires AutoHotkey v2.0
 #SingleInstance Force
 
+; Include configuration file
+#Include config.ahk
+
 ; =========================
 ; Browser & App Shortcuts
 ; - Quick website opening
@@ -22,33 +25,31 @@ UriEncode(str) {
 }
 
 ; =========================
-; Open Edge with URL
+; Open URL in preferred browser
 ; =========================
-OpenEdgeInstant(url) {
-    Run('msedge.exe "' url '"')
-}
+; (Function defined in config.ahk)
 
 ; =========================
 ; WEBSITE HOTKEYS
 ; =========================
 
 ; Gmail
-!q:: OpenEdgeInstant("https://mail.google.com/")
+!q:: OpenInBrowser("https://mail.google.com/")
 
 ; ChatGPT
-!c:: OpenEdgeInstant("https://chat.openai.com/")
+!c:: OpenInBrowser("https://chat.openai.com/")
 
 ; Facebook
-!w:: OpenEdgeInstant("https://www.facebook.com/")
+!w:: OpenInBrowser("https://www.facebook.com/")
 
 ; Spotify WEB
-!s:: OpenEdgeInstant("https://open.spotify.com/")
+!s:: OpenInBrowser("https://open.spotify.com/")
 
 ; Gemini
-!g:: OpenEdgeInstant("https://gemini.google.com/")
+!g:: OpenInBrowser("https://gemini.google.com/")
 
 ; Reddit
-!r:: OpenEdgeInstant("https://reddit.com/")
+!r:: OpenInBrowser("https://reddit.com/")
 
 ; =========================
 ; Alt + V: VS Code
@@ -64,8 +65,8 @@ OpenEdgeInstant(url) {
 ; CapsLock + M: Start Google Meet
 ; =========================
 CapsLock & m:: {
-    ; Open meet.new in Edge
-    Run('msedge.exe "https://meet.new"')
+    ; Open meet.new in preferred browser
+    OpenInBrowser("https://meet.new")
     
     ; Wait for page to load
     Sleep(3000)
@@ -97,11 +98,11 @@ CapsLock & m:: {
     query := UriEncode(A_Clipboard)
     A_Clipboard := oldClip
 
-    Run('msedge.exe "https://www.google.com/search?q=' query '"')
+    OpenInBrowser("https://www.google.com/search?q=" . query)
 }
 
 ; =========================
-; Alt + 2: Google Search "giai thich" + selected text
+; Alt + 2: Google Search "explain" + selected text
 ; =========================
 !2:: {
     oldClip := A_Clipboard
@@ -113,24 +114,26 @@ CapsLock & m:: {
         return
     }
 
-    query := UriEncode("giai thich " . A_Clipboard)
+    query := UriEncode("explain " . A_Clipboard)
     A_Clipboard := oldClip
 
-    Run('msedge.exe "https://www.google.com/search?q=' query '"')
+    OpenInBrowser("https://www.google.com/search?q=" . query)
 }
 
 ; ===============================
-; Alt + A → Go to website in Edge
+; Alt + A → Go to website in preferred browser
 ; ===============================
 !a:: {
     result := InputBox("Where you going huh?:", "(?_?)")
 
     if result.Result = "OK" && result.Value != "" {
 
-        if !WinExist("ahk_exe msedge.exe")
-            Run "msedge.exe"
+        if !WinExist(BrowserWindowClass) {
+            Run PreferredBrowser
+            WinWait BrowserWindowClass
+        }
 
-        WinActivate "ahk_exe msedge.exe"
+        WinActivate BrowserWindowClass
         Sleep 500
 
         Send "^t"

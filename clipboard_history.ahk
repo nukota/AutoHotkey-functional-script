@@ -1,6 +1,9 @@
 #Requires AutoHotkey v2.0
 #SingleInstance Force
 
+; Include configuration file
+#Include config.ahk
+
 ; ============================================
 ; Clipboard History Manager
 ; ============================================
@@ -10,8 +13,6 @@
 ; ============================================
 
 ; Configuration
-global MaxHistoryItems := 25        ; Maximum items to remember
-global MaxDisplayLength := 60       ; Max characters shown per item in menu
 global ClipboardHistory := []       ; Array to store clipboard history
 global LastClipboard := ""          ; Track last clipboard to avoid duplicates
 global IsShowingMenu := false       ; Prevent multiple menus
